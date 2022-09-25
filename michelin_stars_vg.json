@@ -1,0 +1,48 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 600,
+    "height": 450,
+    "projection": {"type": "equalEarth"},
+    "layer": [
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/nadzmi1234/3179/main/Assignment2/data/europe2.json",
+          "format": {"type": "topojson", "feature": "europe"}
+        },
+        "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}
+      },
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/nadzmi1234/3179/main/Assignment2/data/week8_homework.csv"
+        },
+        "mark": {
+          "type": "circle",
+          "tooltip": {"content": "data"},
+          "opacity": 0.6,
+          "size": 20
+        },
+        "encoding": {
+          "longitude": {"field": "Longitude", "type": "quantitative"},
+          "latitude": {"field": "Latitude", "type": "quantitative"},
+          "color": {
+            "field": "Award",
+            "type": "nominal",
+            "scale": {
+              "domain": [
+                "1 MICHELIN Star",
+                "2 MICHELIN Stars",
+                "3 MICHELIN Stars"
+              ],
+              "range": ["#90cbcf", "#f6a87d", "#ed0103"]
+            }
+          },
+        "tooltip":[
+            {"field":"Name", "type":"nominal", "title":"Restaurant Name"},
+            {"field":"Address", "type":"nominal", "title":"Address"},
+            {"field":"Cuisine", "type":"nominal", "title":"Cuisine"},
+            {"field":"Award", "type":"nominal", "title":"Award"}
+          ]
+        }
+      }
+    ]
+  }
